@@ -1,4 +1,4 @@
-package effectivejava.juc;
+package effectivejava.juc.threads;
 
 /**
  * @description: 锁和同步， synchronized, volatile

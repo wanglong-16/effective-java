@@ -1,4 +1,4 @@
-package effectivejava.juc;
+package effectivejava.juc.threads;
 
 import java.util.concurrent.*;
 
