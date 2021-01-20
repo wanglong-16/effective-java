@@ -1,6 +1,6 @@
 package effectivejava.juc;
 
-import effectivejava.juc.lock.MyLock;
+import effectivejava.juc.lock.Synchronized;
 /**
  * @description:
  * @version: 1.0
@@ -18,28 +18,28 @@ public class Test {
      * 无锁测试
      */
     private static void testWithNoLock() {
-        MyLock myLock = new MyLock();
+        Synchronized aSynchronized = new Synchronized();
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < 100000; i++) {
-                myLock.orderPlus(1);
+                aSynchronized.orderPlus(1);
             }
         });
 
         Thread thread2 = new Thread(() -> {
             for (int i = 0; i < 100000; i++) {
-                myLock.orderPlus(2);
+                aSynchronized.orderPlus(2);
             }
         });
 
         Thread thread3 = new Thread(() -> {
             for (int i = 0; i < 100000; i++) {
-                myLock.orderPlus(3);
+                aSynchronized.orderPlus(3);
             }
         });
 
         Thread thread4 = new Thread(() -> {
             for (int i = 0; i < 100000; i++) {
-                myLock.orderPlus(4);
+                aSynchronized.orderPlus(4);
             }
         });
         thread1.start();
@@ -55,28 +55,28 @@ public class Test {
      * 测试锁
      */
     private static void testMyLockSync() {
-        MyLock myLock = new MyLock();
+        Synchronized aSynchronized = new Synchronized();
         Thread thread1 = new Thread(() -> {
             for (int i = 0; i < 100000; i++) {
-                myLock.syncOrderPlus(1);
+                aSynchronized.syncOrderPlus(1);
             }
         });
 
         Thread thread2 = new Thread(() -> {
             for (int i = 0; i < 100000; i++) {
-                myLock.syncOrderPlus(2);
+                aSynchronized.syncOrderPlus(2);
             }
         });
 
         Thread thread3 = new Thread(() -> {
             for (int i = 0; i < 100000; i++) {
-                myLock.syncOrderPlus(3);
+                aSynchronized.syncOrderPlus(3);
             }
         });
 
         Thread thread4 = new Thread(() -> {
             for (int i = 0; i < 100000; i++) {
-                myLock.syncOrderPlus(4);
+                aSynchronized.syncOrderPlus(4);
             }
         });
         thread1.start();
