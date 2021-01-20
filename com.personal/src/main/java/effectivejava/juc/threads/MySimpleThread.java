@@ -1,4 +1,4 @@
-package effectivejava.juc;
+package effectivejava.juc.threads;
 
 /**
  * @description: 多线程基础，thread 类和 runnable 接口

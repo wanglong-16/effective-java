@@ -1,4 +1,4 @@
-package effectivejava.juc;
+package effectivejava.juc.threads;
 
 import java.util.stream.IntStream;
 
@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
  * @date: 2021-01-12 23:12:05
  * @author: wanglong16@meicai.cn
  */
-public class MyThreadStates {
+public class MyThreadStatesAndPriority {
 
     static class CyclePrintOut implements Runnable {
 
