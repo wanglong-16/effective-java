@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class FruitGenerator implements Generator<String> {
 
-    private String [] fruits = new String []{"apple", "banana", "pear"};
+    private final String [] fruits = new String []{"apple", "banana", "pear"};
 
     @Override
     public String next() {

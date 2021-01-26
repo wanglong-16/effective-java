@@ -1,5 +1,7 @@
 package effectivejava.generic.bean;
 
+import java.util.List;
+
 /**
  * @description: 泛型方法能使方法独立于类而产生变化，以下是一个基本的指导原则：
  * 无论何时，如果你能做到，你就该尽量使用泛型方法。也就是说，如果使用泛型方法将整个类泛型化， *
@@ -40,6 +42,17 @@ public class GenericMethods {
     //?是一种类型实参
     public void showKeyValue2(GenericObj<?> obj){
         System.out.println("elements  " + obj.getElement());
+    }
+
+    /**
+     * 就只能调对象与类型无关的方法，不能调用对象与类型有关的方法。
+     * @param arr
+     */
+    public void showListValue(List<?> arr) {
+        //类型通配符 指代不确定类型的某种类型，直到运行时才确定，无法在编译期间获取到类型的相关方法
+        for (int i = 0; i < arr.size(); i++) {
+            //System.out.println(arr.set(1, "22"));
+        }
     }
 
     /**
