@@ -15,9 +15,10 @@ Future, FutureTask 是java对线程任务执行过程和结果的封装，包含
 线程的六种状态：new、runnable、waiting、time_waiting、blocked、terminated
 线程有10个优先级，只是给操作系统的一个调度优先级建议，具体获取资源执行情况还是看操作系统的具体调度算法。
 
-## 锁、线程的同步
+## 锁、线程的同步 java 1.6 + 对象锁
 锁状态：
 1、无锁
 2、偏向锁
 3、轻量级锁
 4、重量级锁 
+

@@ -96,6 +96,7 @@ public class MySimpleThread {
      */
     private static class RunThread implements Runnable {
 
+        @Override
         public void run() {
             int start = 1;
             while (start <= 100) {
