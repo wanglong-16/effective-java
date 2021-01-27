@@ -18,7 +18,7 @@ public class MyAbstractQueueSynchronizer {
      * 资源的共享模式：
      * 1、独占模式(exclusive) 排他模式，资源一次只能一个线程获取 如 Reentrantlock
      * 2、共享模式（share）同时可以被多个线程获取，具体的资源个数由参数指定 如 semaphore/countdownlatch
-     * 
+     *
      * AQS的设计是基于模板方法模式的，它有一些方法必须要子类去实现的，它们主要有：
      *
      * isHeldExclusively()：该线程是否正在独占资源。只有用到condition才需要去实现它。
