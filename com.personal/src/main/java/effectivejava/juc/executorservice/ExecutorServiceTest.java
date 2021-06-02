@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.concurrent.*;
 
 /**
- * @description: java 1.8 提供了
+ * @description: java 1.8 提供了 ExecutorService 执行器服务
  * @version: 1.0
  * @date: 2021-02-24 17:14:12
  * @author: wanglong16@meicai.cn
@@ -25,6 +25,9 @@ public class ExecutorServiceTest {
         }
     };
 
+    /**
+     * 核心线程数，最大线程数，核心线程保持时长，阻塞队列， 创建线程的工程， 拒绝策略句柄
+     */
     ExecutorService executorService = new ThreadPoolExecutor(2, 2, 100, TimeUnit.SECONDS,
             new LinkedBlockingDeque<>(), threadFactory, rejectedExecutionHandler);
 
