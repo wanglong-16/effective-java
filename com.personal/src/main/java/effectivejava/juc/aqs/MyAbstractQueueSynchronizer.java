@@ -1,5 +1,7 @@
 package effectivejava.juc.aqs;
 
+import sun.misc.Unsafe;
+
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 /**
@@ -8,9 +10,50 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
  * @date: 2021-01-26 21:22:45
  * @author: wanglong16@meicai.cn
  */
-public class MyAbstractQueueSynchronizer {
+public class MyAbstractQueueSynchronizer extends AbstractQueuedSynchronizer {
 
-    AbstractQueuedSynchronizer abstractQueuedSynchronizer;
+    private static final Unsafe unsafe = Unsafe.getUnsafe();
+
+    /**
+     * Attempts to acquire in exclusive mode. This method should query
+     * if the state of the object permits it to be acquired in the
+     * exclusive mode, and if so to acquire it.
+     *
+     * <p>This method is always invoked by the thread performing
+     * acquire.  If this method reports failure, the acquire method
+     * may queue the thread, if it is not already queued, until it is
+     * signalled by a release from some other thread. This can be used
+     * to implement method {@link Lock#tryLock()}.
+     *
+     * <p>The default
+     * implementation throws {@link UnsupportedOperationException}.
+     *
+     * @param arg the acquire argument. This value is always the one
+     *            passed to an acquire method, or is the value saved on entry
+     *            to a condition wait.  The value is otherwise uninterpreted
+     *            and can represent anything you like.
+     * @return {@code true} if successful. Upon success, this object has
+     * been acquired.
+     * @throws IllegalMonitorStateException  if acquiring would place this
+     *                                       synchronizer in an illegal state. This exception must be
+     *                                       thrown in a consistent fashion for synchronization to work
+     *                                       correctly.
+     * @throws UnsupportedOperationException if exclusive mode is not supported
+     */
+    @Override
+    protected boolean tryAcquire(int arg) {
+        return super.tryAcquire(arg);
+    }
+
+    /**
+     * Creates a new {@code AbstractQueuedSynchronizer} instance
+     * with initial synchronization state of zero.
+     */
+    protected MyAbstractQueueSynchronizer() {
+        super();
+    }
+
+    //AbstractQueuedSynchronizer abstractQueuedSynchronizer;
 
     /**
      * aqs 内部使用先进先出的双端队列，实现一些排队和阻塞的机制
@@ -31,5 +74,6 @@ public class MyAbstractQueueSynchronizer {
      *
      * tryReleaseShared(int)：共享方式。尝试释放资源，如果释放后允许唤醒后续等待结点返回true，否则返回false。
      */
+
 
 }
