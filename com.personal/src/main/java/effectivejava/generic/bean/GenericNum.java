@@ -27,7 +27,7 @@ public class GenericNum <N extends Number>{
      * @param supNum
      */
     private void print(Class<? super Number> supNum) {
-        System.out.println(supNum.getClass().getName());
+        System.out.println(supNum.cast(new Object()));
     }
 
     /**

@@ -39,7 +39,7 @@ public class GenericMethods {
     }
 
     //这也不是一个泛型方法，这也是一个普通的方法，只不过使用了泛型通配符?
-    //?是一种类型实参
+    //?是一种类型实参 表示确定的某一种类型
     public void showKeyValue2(GenericObj<?> obj){
         System.out.println("elements  " + obj.getElement());
     }
@@ -51,7 +51,7 @@ public class GenericMethods {
     public void showListValue(List<?> arr) {
         //类型通配符 指代不确定类型的某种类型，直到运行时才确定，无法在编译期间获取到类型的相关方法
         for (int i = 0; i < arr.size(); i++) {
-            //System.out.println(arr.set(1, "22"));
+            //System.out.println(arr.add(1, "22"));
         }
     }
 
