@@ -15,7 +15,8 @@ public class MyThreadWithResults {
      */
     private static class CallThread implements Callable<Long> {
 
-        public Long call() throws Exception {
+        @Override
+        public Long call() {
             long st = System.currentTimeMillis();
             int start = 1;
             while (start <= 100) {

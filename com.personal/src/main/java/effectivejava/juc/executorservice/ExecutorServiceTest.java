@@ -15,7 +15,7 @@ public class ExecutorServiceTest {
     ThreadFactory threadFactory = new ThreadFactory() {
         @Override
         public Thread newThread(Runnable r) {
-            return new Thread("ExecutorService Thread");
+            return new Thread(r);
         }
     };
 
@@ -26,10 +26,10 @@ public class ExecutorServiceTest {
     };
 
     /**
-     * 核心线程数，最大线程数，核心线程保持时长，阻塞队列， 创建线程的工程， 拒绝策略句柄
+     * 核心线程数，最大线程数，非核心线程保持时长，阻塞队列， 创建线程的工程， 拒绝策略
      */
     ExecutorService executorService = new ThreadPoolExecutor(2, 2, 100, TimeUnit.SECONDS,
-            new LinkedBlockingDeque<>(), threadFactory, rejectedExecutionHandler);
+            new LinkedBlockingDeque<>(), threadFactory);
 
     public static void main(String[] args) {
         ExecutorServiceTest test = new ExecutorServiceTest();
@@ -41,37 +41,20 @@ public class ExecutorServiceTest {
             @Override
             public Integer call() throws Exception {
                 int total = 0;
-                for (int i = 0; i < 100; i++) {
+                for (int i = 0; i < 5; i++) {
                     total += i << 1;
                 }
                 return total;
             }
         };
-        executorService.submit(callable0);
-
-        Callable<Integer> callable1 = () -> {
-            int total = 0;
-            for (int i = 0; i < 1000; i++) {
-                total += i << 1;
-            }
-            return total;
-        };
-
-        Runnable runnable = () -> {
-            int total = 0;
-            for (int i = 0; i < 10000; i++) {
-                total += i << 1;
-            }
-        };
-        executorService.submit(() -> {
-            int total = 0;
-            for (int i = 0; i < 10000; i++) {
-                total += i << 1;
-            }
-            System.out.println("runnable -- 10000 --" + total);
-        });
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<Integer> f = executorService.submit(callable0);
         try {
-            System.out.println(callable0.call());
+//            while (!f.isDone()) {
+//                System.out.println("calculating");
+//            }
+            System.out.println(f.get());
+            executorService.shutdown();
         } catch (Exception e) {
             e.printStackTrace();
         }

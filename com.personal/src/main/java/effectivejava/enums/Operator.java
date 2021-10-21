@@ -10,25 +10,25 @@ public enum Operator {
 
     PLUS("+"){
         @Override
-        public int operator(int a, int b) {
+        public int calculate(int a, int b) {
             return a + b;
         }
     },
     MINUS("-") {
         @Override
-        public int operator(int a, int b) {
+        public int calculate(int a, int b) {
             return a - b;
         }
     },
     MULTI("*") {
         @Override
-        public int operator(int a, int b) {
+        public int calculate(int a, int b) {
             return a * b;
         }
     },
     DIVID("/") {
         @Override
-        public int operator(int a, int b) {
+        public int calculate(int a, int b) {
             return a / b;
         }
     };
@@ -39,5 +39,5 @@ public enum Operator {
         this.desc = desc;
     }
 
-    public abstract int operator(int a, int b);
+    public abstract int calculate(int a, int b);
 }

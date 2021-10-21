@@ -1,7 +1,7 @@
 package effectivejava.generic.bean;
 
 /**
- * @description: 泛形的继承，上下边界
+ * @description: 泛形的限定符，类型检查上下边界
  * @version: 1.0
  * @date: 2021-01-25 22:40:00
  * @author: wanglong16@meicai.cn

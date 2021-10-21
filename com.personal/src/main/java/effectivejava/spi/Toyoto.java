@@ -1,0 +1,14 @@
+package effectivejava.spi;
+
+/**
+ * @description:
+ * @version: 1.0
+ * @date: 2021-09-17 15:05:35
+ * @author: wanglong16@meicai.cn
+ */
+public class Toyoto implements Car{
+    @Override
+    public void display() {
+        System.out.println("----++++----");
+    }
+}

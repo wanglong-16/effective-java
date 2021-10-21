@@ -48,10 +48,11 @@ public class GenericMethods {
      * 就只能调对象与类型无关的方法，不能调用对象与类型有关的方法。
      * @param arr
      */
-    public void showListValue(List<?> arr) {
+    public void showListValue(List<? super String> arr) {
         //类型通配符 指代不确定类型的某种类型，直到运行时才确定，无法在编译期间获取到类型的相关方法
         for (int i = 0; i < arr.size(); i++) {
-            //System.out.println(arr.add(1, "22"));
+            arr.add(1, "22");
+            System.out.println();
         }
     }
 

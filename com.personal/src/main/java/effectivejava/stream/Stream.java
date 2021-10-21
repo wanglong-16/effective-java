@@ -33,11 +33,11 @@ public class Stream {
 
 
     /**
-     * 对中间的每个数据元素执行函数 f
+     * 对中间的每个数据元素执行二元运算，通常用于 求数据流中的元素的和，最大，最小值等操作
      * @return
      */
     public int reduce() {
-        return new ArrayList<>(this.map.values()).stream().reduce(0, (p, q) ->
+        return this.map.values().stream().reduce(0, (p, q) ->
                 {
                     System.out.println("中间层结果p " + p);
                     System.out.println("当前要加的项q " + q);
@@ -46,6 +46,11 @@ public class Stream {
                     return p;
                 }
         );
+    }
+
+    public int reduceMax() {
+        return this.map.values().stream().reduce(Integer.MIN_VALUE, Integer::max);
+        //return this.map.values().stream().reduce(Integer.MIN_VALUE, (a, b) -> a > b ? a : b);
     }
 
     /**
@@ -85,7 +90,7 @@ public class Stream {
 
     public static void main(String[] args) {
         Stream stream = new Stream();
-        System.out.println(stream.groupingByII());
+        System.out.println(stream.reduceMax());
     }
 
     class Person {

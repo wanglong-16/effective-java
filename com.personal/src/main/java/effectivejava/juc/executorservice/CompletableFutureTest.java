@@ -3,39 +3,40 @@ package effectivejava.juc.executorservice;
 import java.util.concurrent.*;
 
 /**
- * @description: 字面意思：可完成的将来 => 也就是异步任务的抽象
+ * @description: 异步任务的抽象
  * @version: 1.0
  * @date: 2021-02-24 17:50:44
  * @author: wanglong16@meicai.cn
  */
 public class CompletableFutureTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         CompletableFutureTest test = new CompletableFutureTest();
+        test.test();
     }
 
     ExecutorService executorService = Executors.newFixedThreadPool(1);
 
-    public void test() {
+    public void test() throws ExecutionException, InterruptedException {
         //实现 Future<T>, CompletionStage<T> 泛型接口，
-        CompletableFuture<Integer> integerFuture = new CompletableFuture<>();
 
-
-        Future<String> future = new FutureTask<String>(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                return "future task";
+        Integer future = CompletableFuture.supplyAsync(() -> {
+            int sum = 0;
+            for (int i = 0; i < 100; i++) {
+                sum += i;
             }
-        });
+            System.out.println("stage 1 result" + sum);
+            return sum;
+        }, executorService).thenApply(sum -> {
+            for (int i = 0; i < 100; i++) {
+                sum += i;
+            }
+            System.out.println("stage 2 result" + sum);
+            return sum;
+        }).join();
 
-        //executorService.submit(future);
-        String f = null;
-        try {
-            f = future.get();
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
-        System.out.println(f);
+        System.out.println(future);
+        executorService.shutdown();
     }
 
 }

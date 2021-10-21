@@ -1,8 +1,12 @@
 package effectivejava.generic;
 
 import effectivejava.generic.bean.GenericObj;
+import effectivejava.generic.pecs.bean.Animal;
+import effectivejava.generic.pecs.bean.Bird;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -67,11 +71,40 @@ public class GenericTest {
         System.out.println(nums.getElement());
     }
 
+
+    class A {
+        String a = "a";
+
+        public A() {
+        }
+    }
+
+    class B extends A {
+
+    }
+
+    class C extends B {
+
+    }
+
+    public void testGenericPECS() {
+        List<? super B> list = new ArrayList<>();
+        //list.add(new A()); super 规定了写入数据的上界是B， 编译报错
+        list.add(new B());
+        list.add(new C());
+        List<? extends B> ll = Collections.singletonList(new B());
+        // C c = ll.get(0); extends 规定了读取的下界为B， 编译报错
+        A a = ll.get(0);
+        System.out.println(a.a);
+    }
+
+
     public static void main(String[] args) {
         //genericCollection();
         //printGenericClazzInfo();
-
-        printGenericObj(new GenericObj<Number>(125) {});
-        printGenericObj(new GenericObj<Integer>(123) {});
+        GenericTest gt = new GenericTest();
+        gt.testGenericPECS();
+      //  printGenericObj(new GenericObj<Number>(125) {});
+      //  printGenericObj(new GenericObj<Integer>(123) {});
     }
 }
