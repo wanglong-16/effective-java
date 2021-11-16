@@ -31,6 +31,14 @@ public class Stream {
         this.personList.add(new Person("dd", "HeBei", 65));
     }
 
+    /**
+     * flatmap 对 stream中的每个元素执行函数，得到新的stream (map)
+     */
+    public void flatMap() {
+        List<String> result = strings.stream().flatMap(s -> Arrays.stream(new int[] {1, 2, 3}).mapToObj(i -> s + i)).collect(Collectors.toList());
+        System.out.println(result.toString());
+    }
+
 
     /**
      * 对中间的每个数据元素执行二元运算，通常用于 求数据流中的元素的和，最大，最小值等操作
@@ -90,7 +98,8 @@ public class Stream {
 
     public static void main(String[] args) {
         Stream stream = new Stream();
-        System.out.println(stream.reduceMax());
+        stream.flatMap();
+        //System.out.println(stream.reduceMax());
     }
 
     class Person {

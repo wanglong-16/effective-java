@@ -35,7 +35,6 @@ public class MyLauncher {
          */
 
 
-
         Launcher.getLauncher().getClassLoader();
         /**
          * 2. extension class loader: 扩展类加载器负责加载 java.ext.dirs所指定目录或jre/libb/ext中的类库，
